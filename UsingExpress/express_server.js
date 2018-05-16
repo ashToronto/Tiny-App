@@ -79,11 +79,13 @@ app.get("/u/:shortURL", (req, res) => {
   res.redirect(longURL);
 });
 
-app.post("/urls", (req, res) => {
-  const upd = req.body.upd;
-  const dog = { name: name };
-  dogsDB[id] = dog;
-
+app.post("/urls/:upd", (req, res) => {
+  const upd = req.params.upd;
+  const long = urlDatabase[upd];
+  urlDatabase[upd] = req.body.input;
+  if (long){
+  res.redirect("/urls")
+  }
 });
 
 
