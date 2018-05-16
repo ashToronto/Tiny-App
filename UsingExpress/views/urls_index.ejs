@@ -1,0 +1,40 @@
+<html lang="en">
+<head>
+  <title>TinyApp</title>
+</head>
+<body style="width: 100%; padding: 5px;">
+  <!-- Add your EJS code here -->
+  <table class="table" style="width: 100%; padding: 5px;">
+      <style>{border: 1px solid black;}</style>
+    <thead>
+      <tr>
+        <th>URLS</th>
+        <th>Short-form</th>
+         <th>Delete</th>
+      </tr>
+    </thead>
+    </tbody>
+      <% for (i in urls){ %>
+      <tr>
+        <td ><%= urls[i] %></td>
+        <td><%= i %></td>
+        <td> <form method="POST" action= "/urls/<%= i %>/delete">
+          <input type="submit" value="Delete"/>
+        </form>
+        </td>
+        <td><a href="/urls/<%= i %>">Edit</a></td>
+        <% } %>
+      </tr>
+      <tr>
+        <td colSpan="2">
+        </td>
+      </tr>
+  </table>
+   <a href="/urls/new">Shorten URL</a>
+</body>
+</html>
+
+
+<style>
+table, th, td {
+border: 1px solid black;}</style>
