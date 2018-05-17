@@ -2,9 +2,9 @@
 // Test with: http://localhost:8080/urls
 // http://localhost:8080/urls/new
 
-var express = require("express");
-var app = express();
-var PORT = process.env.PORT || 8080; // default port 8080
+var express = require("express"); // Enables ejs using require
+var app = express(); // ejs definition is needed alot so we define it in var
+var PORT = process.env.PORT || 8080; // set a default port
 app.set("view engine", "ejs")
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({extended: true}));
