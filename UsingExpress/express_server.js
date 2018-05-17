@@ -8,6 +8,8 @@ var PORT = process.env.PORT || 8080; // default port 8080
 app.set("view engine", "ejs")
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({extended: true}));
+var cookieParser = require("cookie-parser")
+app.use(cookieParser())
 
 var urlDatabase = { // Hardcoded data object
   "b2xVn2": "http://www.lighthouselabs.ca",
@@ -23,8 +25,9 @@ app.listen(PORT, () => {
 });
 
 app.get("/urls",(req, res) => {  // Table with both short and long URL's
-  var x = {urls: urlDatabase};
-  res.render("urls_index", x)
+  let templateVars = {urls: urlDatabase,
+  username: req.cookies["username"]};
+  res.render("urls_index", templateVars)
 });
 
 app.get("/hello", (req, res) => {
@@ -32,11 +35,15 @@ app.get("/hello", (req, res) => {
 });
 
 app.get("/urls/new", (req, res) => { // FORM and Submit
-  res.render("urls_new");
+  console.log('this baby', req.cookies["username"])
+  let templateVars = { shortURL: req.params.id, urls: urlDatabase,
+  username: req.cookies["username"]};
+  res.render("urls_new", templateVars);
 });
 
 app.get("/urls/:id", (req, res) => { // Connect Short url to full version;
-  let templateVars = { shortURL: req.params.id, urls: urlDatabase };
+  let templateVars = { shortURL: req.params.id, urls: urlDatabase,
+  username: req.cookies["username"]};
   res.render("urls_show", templateVars);
 });
 
@@ -79,7 +86,7 @@ app.get("/u/:shortURL", (req, res) => {
   res.redirect(longURL);
 });
 
-app.post("/urls/:upd", (req, res) => {
+app.post("/urls/:upd", (req, res) => { // Updates any changes to urls you want to edit
   const upd = req.params.upd;
   const long = urlDatabase[upd];
   urlDatabase[upd] = req.body.input;
@@ -88,7 +95,14 @@ app.post("/urls/:upd", (req, res) => {
   }
 });
 
+app.post("/login", (req, res) => {
+  res.cookie('username', req.body.username)
+  res.redirect("/urls");
+});
 
-
+app.post("/logout", (req, res) => {
+  res.clearCookie('username', req.body.username)
+  res.redirect("/urls");
+});
 
 
