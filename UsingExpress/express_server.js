@@ -8,8 +8,8 @@ var PORT = process.env.PORT || 8080; // set a default port
 app.set("view engine", "ejs")
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({extended: true}));
-var cookieParser = require("cookie-parser")
-app.use(cookieParser())
+var cookieParser = require("cookie-parser") // Cookie
+app.use(cookieParser()) // Set cookie
 
 var urlDatabase = { // Hardcoded data object
   "b2xVn2": "http://www.lighthouselabs.ca",
