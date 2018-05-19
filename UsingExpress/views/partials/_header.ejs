@@ -1,15 +1,13 @@
-
-  <!-- Add your EJS code here -->
-
+<!-- Add your EJS code here -->
+<a type="button" href="/Register">register</a>
 <% if(username !== undefined){ %>
-<p>Logged-In</p>
-<form action='/logout' method='POST'><input type="submit" value="logout"name="username" size="40"></form>
+    <p>Logged-In</p>
+    <form action='/logout' method='POST'>
+        <input type="submit" value="logout" name="username" size="40">
+    </form>
+    <a type="button" href="/urls/new">Shorten URL</a>
 
- <% } else { %>
-<form action='/login' method='GET' style="font-size:20px; padding:50px;">
-    <input type="submit" value="Login"/> </form>
-<% } %>
-
-
-
-
+    <% } else { %>
+        <form action='/login' method='GET' style="font-size:20px; padding:50px;">
+            <input type="submit" value="Login" /> </form>
+        <% } %>
