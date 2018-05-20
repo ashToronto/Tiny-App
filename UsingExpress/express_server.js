@@ -23,7 +23,7 @@ var urlDatabase = { // URL object storing
  },
 };
 
-const users = { // User Object that stores ID + name + password
+const users = {
  "userRandomID": {
   id: "userRandomID",
   email: "user@example.com",
@@ -51,12 +51,12 @@ app.get("/urls", (req, res) => { // Table with both short and long URL's
   };
   res.render("urls_index", templateVars)
  } else {
-  // res.status(401).send("Error not your data please login with the correct account")
+
   res.redirect("/register")
  }
 });
 
-app.get("/urls/new", (req, res) => { // FORM and Submit Add to list
+app.get("/urls/new", (req, res) => {
  if (req.session["user_id"]) {
   let templateVars = {
    username: req.session["user_id"]
@@ -67,7 +67,7 @@ app.get("/urls/new", (req, res) => { // FORM and Submit Add to list
  }
 });
 
-app.get("/urls/:id", (req, res) => { // Connect Short url to full version;
+app.get("/urls/:id", (req, res) => {
 
  if (!req.session["user_id"] || !(urlDatabase[req.params.id])) {
   return res.status(401).send("You are not logged in.")
@@ -83,7 +83,7 @@ app.get("/urls/:id", (req, res) => { // Connect Short url to full version;
 
 // ******************* DELETE URL FEATURE  *******************
 
-app.post("/urls/:id/delete", (req, res) => { // DELETE url's from Table
+app.post("/urls/:id/delete", (req, res) => {
  if (req.session["user_id"]) {
   const id = req.params.id;
   const erase = urlDatabase[id].userID
@@ -193,7 +193,7 @@ app.get("/login", (req, res) => { // Registration Form 2 Step 6
 
 });
 
-//Assumes registration is done
+//Assumes registration is complete
 app.post("/login", (req, res) => {
  for (i in users) {
   if (users[i].email === req.body.email && bcrypt.compareSync(req.body.password, users[i].password)) {
