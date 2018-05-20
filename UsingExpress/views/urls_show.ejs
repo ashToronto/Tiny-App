@@ -1,39 +1,34 @@
 <html lang="en">
-   <head>
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-      <title>TinyApp</title>
-   </head>
-   <body style="width: 100%; padding: 5px;">
-     <%- include partials/_header.ejs %>
-         <!-- Add your EJS code here -->
-         <table class="table" style="width: 100%; padding: 5px;">
-            <style> table, th, td {border: 1px solid black;}</style>
-            <thead>
-               <tr>
-                  <th>ShortURL</th>
-                  <th>Full-form</th>
-               </tr>
-            </thead>
-            <tr>
-               <td> <%= shortURL %> </td>
-               <td> <%= urls[shortURL].longURL %> </td>
-            </tr>
-            <tr>
-               <td colSpan="2">
-               </td>
-            </tr>
-            </tbody>
-         </table>
-         <p></p>
-         <p></p>
-         <form action="/urls/<%= shortURL %>" method="POST">
-         <input type="text"name="longURL" size="80" value='https://'/>
-         <input type="submit" value="update"/>
-      </form>
-   </body>
-   <a href="/urls/">Return to Main</a></td>
-</html>
-<style>
-   table, th, td {
-   border: 1px solid black;}
-</style>
+	<head>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+			<title>TinyApp</title>
+		</head>
+		<body style="width: 100%; padding: 5px;"><%- include partials/_header.ejs %>
+			<!-- Add your EJS code here -->
+			<table class="table" style="width: 100%; padding: 5px;">
+				<style> table, th, td {border: 1px solid black;}</style>
+				<thead>
+					<tr>
+						<th>ShortURL</th>
+						<th>Full-form</th>
+					</tr>
+				</thead>
+				<tr>
+					<td><%= shortURL %>
+					</td>
+					<td><%= urls[shortURL].longURL %>
+					</td>
+				</tr>
+				<tr>
+					<td colSpan="2"></td>
+				</tr>
+			</tbody>
+		</table>
+		<p></p>
+		<p></p>
+		<form action="/urls/<%= shortURL %>" method="POST">
+			<input type="text"name="longURL" size="80" value='https://www.'/>
+			<input type="submit" value="update"/>
+		</form>
+	</body>
+	<a href="/urls/">Add changes</a>
