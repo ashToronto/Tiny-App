@@ -1,22 +1,22 @@
 // Test with: http://localhost:8080/urls
 // http://localhost:8080/urls/new
 
-var express = require("express"); // Enables ejs using require
-var app = express(); // ejs definition is needed alot so we define it in var
-var PORT = process.env.PORT || 8080; // set a default port
+var express = require("express");
+var app = express();
+var PORT = process.env.PORT || 8080;
 app.set("view engine", "ejs")
 
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({
  extended: true
 }));
-var cookieSession = require("cookie-session") // Cookie
+var cookieSession = require("cookie-session")
 app.use(cookieSession({
  name: 'session',
  keys: ['hothot'],
 }))
 const bcrypt = require('bcrypt');
-var urlDatabase = { // URL object storing
+var urlDatabase = {
  "FGcYkJk": {
   longURL: "http://www.espn.com",
   userID: "userRandomID"
@@ -37,9 +37,9 @@ app.listen(PORT, () => {
 
 // ******************************  URL HOME PAGE *******************
 
-app.get("/urls", (req, res) => { // Table with both short and long URL's
+app.get("/urls", (req, res) => {
  if (req.session["user_id"]) {
-  let userUrl = {} // NEW OBJECT THAT STORES USERS PERSONEL URLS REFER TO THIS FROM NOW ON < < < <
+  let userUrl = {}
   for (j in urlDatabase) {
    if (urlDatabase[j].userID === req.session["user_id"]) {
     userUrl[j] = urlDatabase[j];
@@ -116,7 +116,7 @@ app.post("/urls", (req, res) => {
    longURL: req.body.longURL,
    userID: req.session["user_id"]
   }
-  res.redirect('/urls/' + b)
+  res.redirect('/urls/' + b);
  } else {
   return res.status(401).send("You are not logged in.")
  }
@@ -184,7 +184,7 @@ app.post("/register", (req, res) => {
 
 // ********************* LOGIN FEATURE  *******************
 
-app.get("/login", (req, res) => { // Registration Form 2 Step 6
+app.get("/login", (req, res) => {
  var templateVars = {
   urls: urlDatabase,
   username: req.session["user_id"]
