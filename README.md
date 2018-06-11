@@ -19,8 +19,8 @@ TinyApp is a full stack web application that allows users to shorten a long URL 
 
 
 ##Final Product
-!["TinyApp home page collection of shortened URL"](https://github.com/ashToronto/Tiny-App/blob/master/docs/addurl.png?raw=true)
-!["Add a new URL to the list"](Tiny-App/docs/addurl.png)
+!["Home-Screen Summary"](https://github.com/ashToronto/Tiny-App/blob/master/docs/addurl.png?raw=true)
+!["TinyApp home page collection of shortened URL"](https://github.com/ashToronto/Tiny-App/blob/master/docs/home.png?raw=true)
 !["Update a long URL and maintain the same short-form"](Tiny-App/docs/update.png])
 
 
